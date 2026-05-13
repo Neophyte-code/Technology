@@ -12,7 +12,7 @@ export default function TrainingsPage() {
 
       <div className="pt-24 bg-zinc-50 dark:bg-zinc-950 min-h-screen">
         {/* Hero Section */}
-        <section className="bg-gradient-to-br from-zinc-900 to-black text-white py-20">
+        <section className="bg-linear-to-br from-zinc-900 to-black text-white py-20">
           <div className="max-w-screen-2xl mx-auto px-6 text-center">
             <div className="inline-flex items-center gap-2 px-4 py-2 bg-yellow-500/10 border border-yellow-500/30 rounded-full mb-6">
               <span className="text-yellow-400">Professional Development</span>
@@ -99,7 +99,7 @@ export default function TrainingsPage() {
                   key={i}
                   className="flex gap-4 bg-zinc-50 dark:bg-zinc-800 p-6 rounded-2xl"
                 >
-                  <div className="w-8 h-8 rounded-full bg-yellow-500 text-black flex items-center justify-center font-bold flex-shrink-0 mt-0.5">
+                  <div className="w-8 h-8 rounded-full bg-yellow-500 text-black flex items-center justify-center font-bold shrink-0 mt-0.5">
                     {i + 1}
                   </div>
                   <p className="text-zinc-700 dark:text-zinc-300 leading-relaxed">

@@ -60,7 +60,7 @@ export default function AnnouncementsPage() {
                 className="bg-white dark:bg-zinc-900 rounded-3xl shadow-sm border border-zinc-200 dark:border-zinc-800 overflow-hidden hover:shadow-xl transition-all duration-300 flex flex-col h-full group"
               >
                 {/* Top Accent */}
-                <div className="h-2 bg-gradient-to-r from-yellow-400 to-amber-600" />
+                <div className="h-2 bg-linear-to-r from-yellow-400 to-amber-600" />
 
                 <div className="p-8 flex-1 flex flex-col">
                   <div className="flex items-center gap-3 text-xs uppercase tracking-widest text-yellow-600 dark:text-yellow-500 mb-4">

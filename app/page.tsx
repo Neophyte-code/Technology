@@ -108,34 +108,55 @@ export default function Home() {
     <>
       <Navbar />
 
-      {/* HERO SECTION */}
-      <section className="min-h-screen pt-20 bg-linear-to-br from-zinc-950 via-zinc-900 to-black flex items-center relative overflow-hidden">
+      {/* HERO SECTION with Background Image */}
+      <section className="min-h-screen pt-20 relative flex items-center overflow-hidden">
+        {/* Background Image */}
+        <div
+          className="absolute inset-0 bg-cover bg-center bg-no-repeat brightness-75"
+          style={{
+            backgroundImage: "url('/images/hero-bg.jpg')",
+          }}
+        />
+
+        {/* Dark Overlay for better text readability */}
+        <div className="absolute inset-0 bg-linear-to-br from-zinc-950/90 via-zinc-900/80 to-black/70" />
+
+        {/* Subtle radial accent */}
         <div className="absolute inset-0 bg-[radial-gradient(at_center,#eab30820_0%,transparent_70%)]" />
+
+        {/* Content */}
         <div className="max-w-screen-2xl mx-auto px-6 lg:px-16 xl:px-24 py-20 relative z-10 w-full">
           <div className="max-w-4xl">
-            <div className="inline-flex items-center gap-2 px-4 py-2 bg-yellow-500/10 border border-yellow-500/30 rounded-full mb-6">
+            <div className="inline-flex items-center gap-2 px-4 py-2 bg-yellow-500/10 border border-yellow-500/30 rounded-full mb-6 backdrop-blur-sm">
               <span className="text-yellow-400 text-sm font-medium">
                 District of Daanbantayan II
               </span>
             </div>
+
             <h1 className="text-5xl md:text-6xl lg:text-6xl font-bold tracking-tighter text-white leading-tight">
               Technology-Assisted Modules in Mathematics Instruction
               <br />
               Towards Digitalization
             </h1>
-            <p className="mt-6 text-xl md:text-2xl text-zinc-400">
+
+            <p className="mt-6 text-xl md:text-2xl text-zinc-300">
               Division of Cebu Province
             </p>
+
             <div className="mt-10 flex flex-wrap gap-4">
               <Link
                 href="#lessons"
-                className="px-8 py-4 bg-yellow-500 hover:bg-yellow-600 text-black font-semibold rounded-2xl flex items-center gap-2 transition-all active:scale-95"
+                className="px-8 py-4 bg-yellow-500 hover:bg-yellow-600 text-black font-semibold rounded-2xl flex items-center gap-2 transition-all active:scale-95 shadow-lg"
               >
-                Explore Lessons <FiArrowRight className="w-5 h-5" />
+                Explore Lessons
+                <FiArrowRight className="w-5 h-5" />
               </Link>
             </div>
           </div>
         </div>
+
+        {/* Optional subtle bottom fade */}
+        <div className="absolute bottom-0 left-0 right-0 h-32 bg-linear-to-t from-zinc-950 to-transparent" />
       </section>
 
       {/* MODERN IMAGE CAROUSEL */}
@@ -325,6 +346,125 @@ export default function Home() {
           </div>
         </div>
       )}
+
+      {/* ASSESSMENT SECTION */}
+      <section className="py-20 bg-white dark:bg-zinc-950">
+        <div className="max-w-screen-2xl mx-auto px-6">
+          <div className="grid lg:grid-cols-2 gap-12 items-center">
+            {/* Left Side - Description */}
+            <div>
+              <h2 className="text-4xl font-bold tracking-tight mb-8">
+                Assessment Section
+              </h2>
+              <div className="space-y-6 text-zinc-700 dark:text-zinc-300 leading-relaxed text-lg">
+                <p>
+                  Welcome to the assessment section of our General Mathematics
+                  website. This is where you can put your knowledge to the test!
+                </p>
+                <p>
+                  After exploring our modules and watching the video tutorials,
+                  it's time to see how well you've understood the material.
+                </p>
+                <p>
+                  In this section, you'll find a variety of quizzes and practice
+                  tests. These assessments are designed to challenge you and
+                  provide immediate feedback.
+                </p>
+                <p className="font-medium">
+                  Take your time, learn from your mistakes, and keep improving.
+                  Good luck!
+                </p>
+              </div>
+            </div>
+
+            {/* Right Side - Assessment Links */}
+            <div className="space-y-8">
+              {/* Google Quiz */}
+              <div className="bg-zinc-100 dark:bg-zinc-900 rounded-3xl p-8 hover:shadow-xl transition-all">
+                <h3 className="text-2xl font-semibold mb-6">Google Quiz</h3>
+                <a
+                  href="https://forms.gle/oBKno24nLrart15A8"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="block"
+                >
+                  <div className="bg-white dark:bg-zinc-800 rounded-2xl p-6 hover:scale-105 transition-transform">
+                    <img
+                      src="/images/icon/googleform.png"
+                      alt="Google Quiz"
+                      className="mx-auto rounded-xl"
+                    />
+                  </div>
+                </a>
+                <p className="text-center text-sm text-zinc-500 mt-4">
+                  Click the image above to open Google Forms
+                </p>
+              </div>
+
+              {/* Google Survey */}
+              <div className="bg-zinc-100 dark:bg-zinc-900 rounded-3xl p-8 hover:shadow-xl transition-all">
+                <h3 className="text-2xl font-semibold mb-6">Google Survey</h3>
+                <a
+                  href="https://forms.gle/SktnJSxa4h6muhza8"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="block"
+                >
+                  <div className="bg-white dark:bg-zinc-800 rounded-2xl p-6 hover:scale-105 transition-transform">
+                    <img
+                      src="/images/icon/googleform.png"
+                      alt="Google Survey"
+                      className="mx-auto rounded-xl"
+                    />
+                  </div>
+                </a>
+                <p className="text-center text-sm text-zinc-500 mt-4">
+                  Click the image above to open Google Forms
+                </p>
+              </div>
+
+              {/* Quizizz */}
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                <div className="bg-zinc-100 dark:bg-zinc-900 rounded-3xl p-6 hover:shadow-xl transition-all">
+                  <h4 className="font-semibold mb-4">Quizizz 1</h4>
+                  <a
+                    href="https://quizizz.com/join?gc=67121743"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="block"
+                  >
+                    <img
+                      src="/images/icon/quizizz.png"
+                      alt="Quizizz 1"
+                      className="rounded-xl mx-auto"
+                    />
+                  </a>
+                </div>
+
+                <div className="bg-zinc-100 dark:bg-zinc-900 rounded-3xl p-6 hover:shadow-xl transition-all">
+                  <h4 className="font-semibold mb-4">Quizizz 2</h4>
+                  <a
+                    href="https://quizizz.com/join?gc=75053522"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="block"
+                  >
+                    <img
+                      src="/images/icon/quizizz.png"
+                      alt="Quizizz 2"
+                      className="rounded-xl mx-auto"
+                    />
+                  </a>
+                </div>
+              </div>
+
+              <p className="text-center text-amber-600 dark:text-amber-500 font-medium">
+                Note: Click Quizizz 2 if you are unable to join Quizizz 1.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
 
       {/* FOOTER */}
       <footer className="bg-zinc-900 text-zinc-400 py-12">

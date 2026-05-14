@@ -1,27 +1,37 @@
 import React from "react";
 import Navbar from "../components/Navbar";
-import { FiCalendar, FiBell, FiArrowRight } from "react-icons/fi";
+import { FiCalendar, FiBell } from "react-icons/fi";
 
 export default function AnnouncementsPage() {
   return (
     <>
       <Navbar />
 
-      <div className="pt-24 bg-zinc-50 dark:bg-zinc-950 min-h-screen">
-        {/* Hero Banner */}
-        <div className="bg-linear-to-r from-zinc-900 to-black text-white py-20">
-          <div className="max-w-screen-2xl mx-auto px-6 text-center">
-            <div className="inline-flex items-center gap-2 px-5 py-2.5 bg-yellow-500 text-black rounded-full font-medium mb-6">
-              <FiBell className="w-5 h-5" />
-              OFFICIAL ANNOUNCEMENT
-            </div>
-            <h1 className="text-4xl md:text-5xl font-bold tracking-tighter leading-tight max-w-4xl mx-auto">
-              Adaptation of Digitalized Technology-Assisted Modules in
-              Mathematics Instruction will be in School Year 2027-2028 in Public
-              Secondary Schools of Daanbantayan District II
-            </h1>
-            <p className="mt-6 text-yellow-400 text-lg">2026</p>
+      {/* Main Container with Background Image */}
+      <div
+        className="relative min-h-screen flex items-center justify-center pt-24 bg-cover bg-center bg-no-repeat"
+        style={{
+          backgroundImage:
+            "url('https://images.unsplash.com/photo-1518133910546-b6c2fb7d79e3?q=80&w=2000')",
+        }}
+      >
+        {/* Overlay: Adjusts based on Light/Dark mode */}
+        <div className="absolute inset-0 bg-white/80 dark:bg-zinc-950/90 z-0" />
+
+        {/* Content */}
+        <div className="relative z-10 w-full max-w-screen-2xl mx-auto px-6 lg:px-16 xl:px-24 py-20 text-center">
+          <div className="inline-flex items-center gap-2 px-4 py-2 bg-yellow-500 text-black rounded-full font-bold text-sm mb-8">
+            <FiBell className="w-4 h-4" />
+            OFFICIAL ANNOUNCEMENT
           </div>
+
+          <h1 className="text-3xl md:text-5xl lg:text-6xl font-extrabold tracking-tight text-zinc-900 dark:text-white leading-tight max-w-5xl mx-auto">
+            Adaptation of Digitalized Technology-Assisted Modules in Mathematics
+            Instruction will be in School Year{" "}
+            <span className="text-yellow-600 dark:text-yellow-500">
+              2027-2028
+            </span>
+          </h1>
         </div>
       </div>
     </>

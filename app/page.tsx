@@ -241,7 +241,7 @@ export default function Home() {
                 <div className="p-6">
                   {" "}
                   {/* Reduced padding slightly to match smaller size */}
-                  <h3 className="font-semibold text-lg text-zinc-900 dark:text-white leading-tight">
+                  <h3 className="font-semibold text-lg text-yellow-500 dark:text-white leading-tight">
                     {lesson.title}
                   </h3>
                 </div>
@@ -301,47 +301,6 @@ export default function Home() {
           </div>
         </div>
       )}
-      {/* SURVEY SECTION */}
-      <section id="survey" className="py-20 bg-white dark:bg-zinc-950">
-        {/* Updated padding to match Hero: px-6 lg:px-16 xl:px-24 */}
-        <div className="max-w-screen-2xl mx-auto px-6 lg:px-16 xl:px-24">
-          <div className="max-w-4xl mb-12">
-            <h2 className="text-4xl font-bold tracking-tight mb-6">
-              Survey Questionnaire
-            </h2>
-            <p className="text-zinc-700 dark:text-zinc-300 text-lg">
-              Your feedback is important to us. Please take a moment to complete
-              this survey to help improve the technology-assisted instruction
-              experience.
-            </p>
-          </div>
-
-          <div className="max-w-md">
-            <div className="bg-zinc-100 dark:bg-zinc-900 rounded-3xl p-8 hover:shadow-xl transition-all border border-zinc-200 dark:border-zinc-800">
-              <h3 className="text-xl font-semibold mb-6">
-                General Feedback Survey
-              </h3>
-              <a
-                href="https://forms.gle/SktnJSxa4h6muhza8"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="block"
-              >
-                <div className="bg-white dark:bg-zinc-800 rounded-2xl p-6 hover:scale-105 transition-transform shadow-sm">
-                  <img
-                    src="/images/icon/googleform.png"
-                    alt="Google Survey"
-                    className="mx-auto rounded-xl h-24 object-contain"
-                  />
-                </div>
-              </a>
-              <p className="text-center text-sm text-zinc-500 mt-6 font-medium">
-                Click the icon above to open Google Forms
-              </p>
-            </div>
-          </div>
-        </div>
-      </section>
 
       {/* ASSESSMENT SECTION */}
       <section
@@ -445,6 +404,48 @@ export default function Home() {
             <p className="text-center text-amber-600 dark:text-amber-500 font-medium bg-amber-50 dark:bg-amber-900/10 py-4 rounded-2xl border border-amber-100 dark:border-amber-900/20">
               Note: Click Quizizz 2 if you are unable to join Quizizz 1.
             </p>
+          </div>
+        </div>
+      </section>
+
+      {/* SURVEY SECTION */}
+      <section id="survey" className="py-20 bg-white dark:bg-zinc-950">
+        {/* Updated padding to match Hero: px-6 lg:px-16 xl:px-24 */}
+        <div className="max-w-screen-2xl mx-auto px-6 lg:px-16 xl:px-24">
+          <div className="max-w-4xl mb-12">
+            <h2 className="text-4xl font-bold tracking-tight mb-6">
+              Survey Questionnaire
+            </h2>
+            <p className="text-zinc-700 dark:text-zinc-300 text-lg">
+              Your feedback is important to us. Please take a moment to complete
+              this survey to help improve the technology-assisted instruction
+              experience.
+            </p>
+          </div>
+
+          <div className="max-w-md">
+            <div className="bg-zinc-100 dark:bg-zinc-900 rounded-3xl p-8 hover:shadow-xl transition-all border border-zinc-200 dark:border-zinc-800">
+              <h3 className="text-xl font-semibold mb-6">
+                General Feedback Survey
+              </h3>
+              <a
+                href="https://forms.gle/SktnJSxa4h6muhza8"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="block"
+              >
+                <div className="bg-white dark:bg-zinc-800 rounded-2xl p-6 hover:scale-105 transition-transform shadow-sm">
+                  <img
+                    src="/images/icon/googleform.png"
+                    alt="Google Survey"
+                    className="mx-auto rounded-xl h-24 object-contain"
+                  />
+                </div>
+              </a>
+              <p className="text-center text-sm text-zinc-500 mt-6 font-medium">
+                Click the icon above to open Google Forms
+              </p>
+            </div>
           </div>
         </div>
       </section>

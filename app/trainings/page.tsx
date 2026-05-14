@@ -12,21 +12,42 @@ export default function TrainingsPage() {
 
       <div className="pt-24 bg-zinc-50 dark:bg-zinc-950 min-h-screen">
         {/* Hero Section */}
-        <section className="bg-linear-to-br from-zinc-900 to-black text-white py-20">
-          <div className="max-w-screen-2xl mx-auto px-6 text-center">
-            <div className="inline-flex items-center gap-2 px-4 py-2 bg-yellow-500/10 border border-yellow-500/30 rounded-full mb-6">
-              <span className="text-yellow-400">Professional Development</span>
+        <section className="bg-zinc-900 text-white py-20">
+          <div className="max-w-screen-2xl mx-auto px-6">
+            <div className="grid md:grid-cols-2 gap-12 items-center">
+              {/* Left Side - Image */}
+              <div className="relative">
+                <div className="aspect-square md:aspect-4/3 bg-zinc-800 rounded-3xl overflow-hidden shadow-2xl">
+                  <img
+                    src="/images/training.jpg"
+                    alt="Mathematics Teachers Conference"
+                    className="w-full h-full object-cover hover:scale-105 transition-transform duration-700"
+                  />
+                </div>
+              </div>
+
+              {/* Right Side - Content */}
+              <div className="text-center md:text-left">
+                <div className="inline-flex items-center gap-2 px-4 py-2 bg-yellow-500/10 border border-yellow-500/30 rounded-full mb-6">
+                  <span className="text-yellow-400">
+                    Professional Development
+                  </span>
+                </div>
+
+                <h1 className="text-5xl md:text-6xl font-bold tracking-tighter leading-tight mb-6">
+                  Mathematics Teachers&apos; Conference
+                </h1>
+
+                <p className="text-3xl text-yellow-400 font-medium mb-6">
+                  2026
+                </p>
+
+                <p className="max-w-lg text-lg text-zinc-400">
+                  Technology-Assisted Module in Mathematics Instruction Towards
+                  Digitalization
+                </p>
+              </div>
             </div>
-
-            <h1 className="text-5xl md:text-6xl font-bold tracking-tighter mb-6">
-              Mathematics Teachers&apos; Conference
-            </h1>
-            <p className="text-3xl text-yellow-400 font-medium">2026</p>
-
-            <p className="mt-8 max-w-2xl mx-auto text-lg text-zinc-400">
-              Technology-Assisted Module in Mathematics Instruction Towards
-              Digitalization
-            </p>
           </div>
         </section>
 
@@ -38,7 +59,7 @@ export default function TrainingsPage() {
                 <FiCalendar className="w-10 h-10 text-yellow-500 mb-4" />
                 <h3 className="font-semibold text-xl mb-2">Date</h3>
                 <p className="text-zinc-600 dark:text-zinc-400">
-                  June — March 2027
+                  June 2026 — March 2027
                 </p>
                 <p className="text-sm text-zinc-500 mt-1">(Monthly Series)</p>
               </div>
@@ -110,12 +131,6 @@ export default function TrainingsPage() {
             </div>
           </div>
         </section>
-
-        {/* Footer Note */}
-        <div className="py-12 text-center text-sm text-zinc-500">
-          Organized by the District of Daanbantayan II • Division of Cebu
-          Province
-        </div>
       </div>
     </>
   );

@@ -29,11 +29,11 @@ export default function Home() {
     "/images/lessons/Picture11.png",
     "/images/lessons/Picture12.png",
     "/images/lessons/Picture13.png",
-    "/images/lessons/Picture14.png",
-    "/images/lessons/Picture15.png",
-    "/images/lessons/Picture16.png",
-    "/images/lessons/Picture17.png",
-    "/images/lessons/Picture18.png",
+    "/images/lessons/Picture14.jpg",
+    "/images/lessons/Picture15.jpg",
+    "/images/lessons/Picture16.jpg",
+    "/images/lessons/Picture17.jpg",
+    "/images/lessons/Picture18.jpg",
     "/images/lessons/Picture19.png",
   ];
 
@@ -119,7 +119,7 @@ export default function Home() {
         />
 
         {/* Dark Overlay for better text readability */}
-        <div className="absolute inset-0 bg-linear-to-br from-zinc-950/90 via-zinc-900/80 to-black/70" />
+        <div className="absolute inset-0 bg-linear-to-br from-zinc-850/90 via-zinc-850/70 to-black/70" />
 
         {/* Subtle radial accent */}
         <div className="absolute inset-0 bg-[radial-gradient(at_center,#eab30820_0%,transparent_70%)]" />
@@ -127,19 +127,19 @@ export default function Home() {
         {/* Content */}
         <div className="max-w-screen-2xl mx-auto px-6 lg:px-16 xl:px-24 py-20 relative z-10 w-full">
           <div className="max-w-4xl">
-            <div className="inline-flex items-center gap-2 px-4 py-2 bg-yellow-500/10 border border-yellow-500/30 rounded-full mb-6 backdrop-blur-sm">
-              <span className="text-yellow-400 text-sm font-medium">
-                District of Daanbantayan II
-              </span>
-            </div>
-
             <h1 className="text-5xl md:text-6xl lg:text-6xl font-bold tracking-tighter text-white leading-tight">
               Technology-Assisted Modules in Mathematics Instruction
               <br />
               Towards Digitalization
             </h1>
 
-            <p className="mt-6 text-xl md:text-2xl text-zinc-300">
+            <div className="mt-3 inline-flex items-center gap-2 px-4 py-2 bg-yellow-500/10 border border-yellow-500/30 rounded-full mb-6 backdrop-blur-sm">
+              <span className="text-yellow-400 text-xl font-medium">
+                District of Daanbantayan II
+              </span>
+            </div>
+
+            <p className="text-xl md:text-2xl text-zinc-300">
               Division of Cebu Province
             </p>
 
@@ -379,28 +379,6 @@ export default function Home() {
 
             {/* Right Side - Assessment Links */}
             <div className="space-y-8">
-              {/* Google Quiz */}
-              <div className="bg-zinc-100 dark:bg-zinc-900 rounded-3xl p-8 hover:shadow-xl transition-all">
-                <h3 className="text-2xl font-semibold mb-6">Google Quiz</h3>
-                <a
-                  href="https://forms.gle/oBKno24nLrart15A8"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="block"
-                >
-                  <div className="bg-white dark:bg-zinc-800 rounded-2xl p-6 hover:scale-105 transition-transform">
-                    <img
-                      src="/images/icon/googleform.png"
-                      alt="Google Quiz"
-                      className="mx-auto rounded-xl"
-                    />
-                  </div>
-                </a>
-                <p className="text-center text-sm text-zinc-500 mt-4">
-                  Click the image above to open Google Forms
-                </p>
-              </div>
-
               {/* Google Survey */}
               <div className="bg-zinc-100 dark:bg-zinc-900 rounded-3xl p-8 hover:shadow-xl transition-all">
                 <h3 className="text-2xl font-semibold mb-6">Google Survey</h3>
@@ -423,6 +401,27 @@ export default function Home() {
                 </p>
               </div>
 
+              {/* Google Quiz */}
+              <div className="bg-zinc-100 dark:bg-zinc-900 rounded-3xl p-8 hover:shadow-xl transition-all">
+                <h3 className="text-2xl font-semibold mb-6">Google Quiz</h3>
+                <a
+                  href="https://forms.gle/oBKno24nLrart15A8"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="block"
+                >
+                  <div className="bg-white dark:bg-zinc-800 rounded-2xl p-6 hover:scale-105 transition-transform">
+                    <img
+                      src="/images/icon/googleform.png"
+                      alt="Google Quiz"
+                      className="mx-auto rounded-xl"
+                    />
+                  </div>
+                </a>
+                <p className="text-center text-sm text-zinc-500 mt-4">
+                  Click the image above to open Google Forms
+                </p>
+              </div>
               {/* Quizizz */}
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
                 <div className="bg-zinc-100 dark:bg-zinc-900 rounded-3xl p-6 hover:shadow-xl transition-all">
@@ -470,16 +469,12 @@ export default function Home() {
       <footer className="bg-zinc-900 text-zinc-400 py-12">
         <div className="max-w-screen-2xl mx-auto px-6 text-center md:text-left flex flex-col md:flex-row justify-between items-center gap-6">
           <div className="flex items-center gap-3 text-left">
-            <div className="w-8 h-8 bg-yellow-500 rounded-lg flex items-center justify-center text-white">
-              📘
-            </div>
             <div>
-              <p className="font-medium text-white">TAMM</p>
               <p className="text-xs">Technology Assisted Module in Math</p>
             </div>
           </div>
           <p className="text-sm">
-            © 2024 Division of Cebu Province • District of Daanbantayan II
+            © Division of Cebu Province • District of Daanbantayan II
           </p>
         </div>
       </footer>

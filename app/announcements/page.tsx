@@ -20,7 +20,7 @@ export default function AnnouncementsPage() {
               Mathematics Instruction will be in School Year 2027-2028 in Public
               Secondary Schools of Daanbantayan District II
             </h1>
-            <p className="mt-6 text-yellow-400 text-lg">May 13, 2026</p>
+            <p className="mt-6 text-yellow-400 text-lg">2026</p>
           </div>
         </div>
       </div>

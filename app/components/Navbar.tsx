@@ -31,19 +31,16 @@ export default function Navbar() {
         <div className="flex items-center justify-between h-20">
           {/* Logo */}
           <div className="flex items-center gap-3">
-            <div className="w-10 h-10 bg-linear-to-br from-yellow-400 to-amber-600 rounded-2xl flex items-center justify-center shadow-lg">
-              <span className="text-white text-3xl">📘</span>
+            {/* Image Placeholder for Logo */}
+            <div className="flex flex-col justify-center">
+              <img
+                src="/images/deped.png"
+                alt="Logo"
+                className="h-10 w-auto object-contain"
+              />
             </div>
 
-            <div>
-              <div className="font-semibold text-2xl tracking-tighter text-zinc-900 dark:text-white">
-                TAMM
-              </div>
-              <p className="text-[10px] text-zinc-500 dark:text-zinc-400 -mt-1 tracking-widest">
-                DEPED
-              </p>
-            </div>
-
+            {/* Supplemental Text */}
             <div className="hidden md:block ml-4 pl-4 border-l border-zinc-200 dark:border-zinc-700">
               <span className="text-sm font-medium text-zinc-600 dark:text-zinc-200">
                 Technology Assisted Module in Math

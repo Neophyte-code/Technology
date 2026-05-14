@@ -45,7 +45,7 @@ export default function AnnouncementsPage() {
               </span>
             </div>
             <h1 className="text-5xl font-bold tracking-tighter text-zinc-900 dark:text-white">
-              Announcements
+              Notifications
             </h1>
             <p className="mt-4 text-zinc-600 dark:text-zinc-400 text-lg">
               Latest Updates • District of Daanbantayan II

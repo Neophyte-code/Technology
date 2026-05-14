@@ -178,13 +178,13 @@ export default function Home() {
 
           <div className="relative max-w-6xl mx-auto group">
             <div
-              className="bg-zinc-900 rounded-3xl overflow-hidden shadow-2xl aspect-video cursor-pointer"
+              className="bg-zinc-100 dark:bg-zinc-900 rounded-3xl overflow-hidden shadow-2xl aspect-video cursor-pointer"
               onClick={() => setIsModalOpen(true)}
             >
               <img
                 src={images[currentImageIndex]}
                 alt="Featured Module"
-                className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                className="w-full h-full object-contain transition-transform duration-500 group-hover:scale-105"
               />
             </div>
             <button
@@ -209,7 +209,7 @@ export default function Home() {
           <div className="text-center mb-12">
             <h2 className="text-4xl font-bold tracking-tight">LESSONS</h2>
           </div>
-          <div className="grid md:grid-cols-2 gap-8">
+          <div className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
             {lessons.map((lesson, index) => (
               <div
                 key={index}
@@ -238,8 +238,10 @@ export default function Home() {
                     </video>
                   )}
                 </div>
-                <div className="p-8">
-                  <h3 className="font-semibold text-xl text-zinc-900 dark:text-white">
+                <div className="p-6">
+                  {" "}
+                  {/* Reduced padding slightly to match smaller size */}
+                  <h3 className="font-semibold text-lg text-zinc-900 dark:text-white leading-tight">
                     {lesson.title}
                   </h3>
                 </div>
@@ -251,216 +253,198 @@ export default function Home() {
 
       {/* IMAGE PREVIEW MODAL */}
       {isModalOpen && (
-        <div
-          className="fixed inset-0 z-100 flex items-center justify-center bg-black/95 p-4 overflow-hidden touch-none"
-          onMouseMove={(e) => onDrag(e.clientX, e.clientY)}
-          onMouseUp={stopDrag}
-          onMouseLeave={stopDrag}
-        >
-          {/* Controls Bar */}
-          <div className="fixed top-6 right-6 flex items-center gap-4 z-110">
-            <div className="flex bg-zinc-800/90 backdrop-blur-md rounded-2xl p-1 border border-white/10">
-              <button
-                onClick={(e) => {
-                  e.stopPropagation();
-                  handleZoomOut();
-                }}
-                className="w-10 h-10 text-white text-2xl hover:bg-white/10 rounded-xl transition-colors"
-              >
-                −
-              </button>
-              <span className="px-3 flex items-center text-xs font-mono text-white">
-                {Math.round(scale * 100)}%
-              </span>
-              <button
-                onClick={(e) => {
-                  e.stopPropagation();
-                  handleZoomIn();
-                }}
-                className="w-10 h-10 text-white text-2xl hover:bg-white/10 rounded-xl transition-colors"
-              >
-                +
-              </button>
-            </div>
-            <button
-              onClick={() => {
-                setIsModalOpen(false);
-                resetZoom();
-              }}
-              className="w-12 h-12 bg-red-600 hover:bg-red-700 text-white rounded-full flex items-center justify-center shadow-lg transition-all"
-            >
-              <FiX size={24} />
-            </button>
-          </div>
+        <div className="fixed inset-0 z-100 flex items-center justify-center bg-black/95 p-4 md:p-10">
+          {/* Close Button */}
+          <button
+            onClick={() => setIsModalOpen(false)}
+            className="fixed top-6 right-6 w-12 h-12 bg-white/10 hover:bg-red-600 text-white rounded-full flex items-center justify-center transition-all z-110"
+          >
+            <FiX size={24} />
+          </button>
 
-          <div className="relative flex flex-col items-center w-full h-full justify-center">
-            {/* Viewport Container */}
-            <div
-              className={`relative w-full h-[75vh] md:h-[85vh] flex items-center justify-center overflow-hidden transition-all ${scale > 1 ? "cursor-grab" : ""}`}
-              onMouseDown={(e) => startDrag(e.clientX, e.clientY)}
-              onTouchStart={(e) =>
-                startDrag(e.touches[0].clientX, e.touches[0].clientY)
-              }
-              onTouchMove={(e) =>
-                onDrag(e.touches[0].clientX, e.touches[0].clientY)
-              }
-              onTouchEnd={stopDrag}
-            >
-              <div
-                style={{
-                  transform: `translate(${position.x}px, ${position.y}px) scale(${scale})`,
-                  transition: isDragging ? "none" : "transform 0.3s ease-out",
-                }}
-                className="flex items-center justify-center pointer-events-none"
-              >
-                <img
-                  src={images[currentImageIndex]}
-                  alt="Preview"
-                  draggable="false"
-                  className="max-w-full max-h-[75vh] md:max-h-[85vh] object-contain shadow-2xl pointer-events-none select-none"
-                />
-              </div>
+          <div className="relative flex flex-col items-center w-full h-full max-w-7xl mx-auto">
+            {/* Image Container */}
+            <div className="flex-1 flex items-center justify-center w-full overflow-hidden">
+              <img
+                src={images[currentImageIndex]}
+                alt="Preview"
+                className="max-w-full max-h-full object-contain shadow-2xl select-none"
+              />
             </div>
 
-            {/* Bottom Nav */}
-            <div className="flex flex-col items-center gap-4 mt-6 z-10">
+            {/* Navigation Controls */}
+            <div className="flex flex-col items-center gap-4 py-6">
               <div className="flex gap-4">
                 <button
-                  onClick={prevImage}
-                  className="px-8 py-3 bg-white/10 text-white rounded-xl hover:bg-white/20"
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    prevImage();
+                  }}
+                  className="px-8 py-3 bg-white/10 text-white rounded-xl hover:bg-white/20 transition-colors"
                 >
-                  ← Prev
+                  ← Previous
                 </button>
                 <button
-                  onClick={nextImage}
-                  className="px-8 py-3 bg-yellow-500 text-black font-bold rounded-xl hover:bg-yellow-400"
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    nextImage();
+                  }}
+                  className="px-8 py-3 bg-yellow-500 text-black font-bold rounded-xl hover:bg-yellow-400 transition-colors"
                 >
                   Next →
                 </button>
               </div>
-              <p className="text-zinc-500 text-sm">
-                {currentImageIndex + 1} / {images.length}{" "}
-                {scale > 1 && "• Drag to move"}
+              <p className="text-zinc-400 text-sm font-medium">
+                {currentImageIndex + 1} / {images.length}
               </p>
             </div>
           </div>
         </div>
       )}
+      {/* SURVEY SECTION */}
+      <section id="survey" className="py-20 bg-white dark:bg-zinc-950">
+        {/* Updated padding to match Hero: px-6 lg:px-16 xl:px-24 */}
+        <div className="max-w-screen-2xl mx-auto px-6 lg:px-16 xl:px-24">
+          <div className="max-w-4xl mb-12">
+            <h2 className="text-4xl font-bold tracking-tight mb-6">
+              Survey Questionnaire
+            </h2>
+            <p className="text-zinc-700 dark:text-zinc-300 text-lg">
+              Your feedback is important to us. Please take a moment to complete
+              this survey to help improve the technology-assisted instruction
+              experience.
+            </p>
+          </div>
+
+          <div className="max-w-md">
+            <div className="bg-zinc-100 dark:bg-zinc-900 rounded-3xl p-8 hover:shadow-xl transition-all border border-zinc-200 dark:border-zinc-800">
+              <h3 className="text-xl font-semibold mb-6">
+                General Feedback Survey
+              </h3>
+              <a
+                href="https://forms.gle/SktnJSxa4h6muhza8"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="block"
+              >
+                <div className="bg-white dark:bg-zinc-800 rounded-2xl p-6 hover:scale-105 transition-transform shadow-sm">
+                  <img
+                    src="/images/icon/googleform.png"
+                    alt="Google Survey"
+                    className="mx-auto rounded-xl h-24 object-contain"
+                  />
+                </div>
+              </a>
+              <p className="text-center text-sm text-zinc-500 mt-6 font-medium">
+                Click the icon above to open Google Forms
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
 
       {/* ASSESSMENT SECTION */}
-      <section className="py-20 bg-white dark:bg-zinc-950">
-        <div className="max-w-screen-2xl mx-auto px-6">
-          <div className="grid lg:grid-cols-2 gap-12 items-center">
-            {/* Left Side - Description */}
-            <div>
-              <h2 className="text-4xl font-bold tracking-tight mb-8">
-                Assessment Section
-              </h2>
-              <div className="space-y-6 text-zinc-700 dark:text-zinc-300 leading-relaxed text-lg">
-                <p>
-                  Welcome to the assessment section of our General Mathematics
-                  website. This is where you can put your knowledge to the test!
-                </p>
-                <p>
-                  After exploring our modules and watching the video tutorials,
-                  it's time to see how well you've understood the material.
-                </p>
-                <p>
-                  In this section, you'll find a variety of quizzes and practice
-                  tests. These assessments are designed to challenge you and
-                  provide immediate feedback.
-                </p>
-                <p className="font-medium">
-                  Take your time, learn from your mistakes, and keep improving.
-                  Good luck!
-                </p>
-              </div>
+      <section
+        id="assessment"
+        className="py-20 bg-zinc-50 dark:bg-zinc-950/50 border-y border-zinc-100 dark:border-zinc-900"
+      >
+        {/* Updated padding to match Hero: px-6 lg:px-16 xl:px-24 */}
+        <div className="max-w-screen-2xl mx-auto px-6 lg:px-16 xl:px-24">
+          <div className="max-w-4xl mb-16">
+            <h2 className="text-4xl font-bold tracking-tight mb-8">
+              Assessment Section
+            </h2>
+            <div className="space-y-6 text-zinc-700 dark:text-zinc-300 leading-relaxed text-lg">
+              <p>
+                Put your knowledge to the test! After exploring our modules and
+                watching the video tutorials, it's time to see how well you've
+                understood the material.
+              </p>
+              <p className="font-medium">
+                Take your time, learn from your mistakes, and keep improving.
+                Good luck!
+              </p>
             </div>
+          </div>
 
-            {/* Right Side - Assessment Links */}
-            <div className="space-y-8">
-              {/* Google Survey */}
-              <div className="bg-zinc-100 dark:bg-zinc-900 rounded-3xl p-8 hover:shadow-xl transition-all">
-                <h3 className="text-2xl font-semibold mb-6">Google Survey</h3>
-                <a
-                  href="https://forms.gle/SktnJSxa4h6muhza8"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="block"
-                >
-                  <div className="bg-white dark:bg-zinc-800 rounded-2xl p-6 hover:scale-105 transition-transform">
-                    <img
-                      src="/images/icon/googleform.png"
-                      alt="Google Survey"
-                      className="mx-auto rounded-xl"
-                    />
-                  </div>
-                </a>
-                <p className="text-center text-sm text-zinc-500 mt-4">
-                  Click the image above to open Google Forms
-                </p>
-              </div>
-
+          <div className="space-y-10">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
               {/* Google Quiz */}
-              <div className="bg-zinc-100 dark:bg-zinc-900 rounded-3xl p-8 hover:shadow-xl transition-all">
-                <h3 className="text-2xl font-semibold mb-6">Google Quiz</h3>
-                <a
-                  href="https://forms.gle/oBKno24nLrart15A8"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="block"
-                >
-                  <div className="bg-white dark:bg-zinc-800 rounded-2xl p-6 hover:scale-105 transition-transform">
-                    <img
-                      src="/images/icon/googleform.png"
-                      alt="Google Quiz"
-                      className="mx-auto rounded-xl"
-                    />
-                  </div>
-                </a>
-                <p className="text-center text-sm text-zinc-500 mt-4">
-                  Click the image above to open Google Forms
+              <div className="bg-white dark:bg-zinc-900 rounded-3xl p-8 hover:shadow-xl transition-all border border-zinc-100 dark:border-zinc-800 flex flex-col justify-between">
+                <div>
+                  <h3 className="text-xl font-semibold mb-6">Google Quiz</h3>
+                  <a
+                    href="https://forms.gle/oBKno24nLrart15A8"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="block"
+                  >
+                    <div className="bg-zinc-50 dark:bg-zinc-800 rounded-2xl p-6 hover:scale-105 transition-transform">
+                      <img
+                        src="/images/icon/googleform.png"
+                        alt="Google Quiz"
+                        className="mx-auto rounded-xl h-20 object-contain"
+                      />
+                    </div>
+                  </a>
+                </div>
+                <p className="text-center text-xs text-zinc-500 mt-6">
+                  Click to start official quiz
                 </p>
               </div>
-              {/* Quizizz */}
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-                <div className="bg-zinc-100 dark:bg-zinc-900 rounded-3xl p-6 hover:shadow-xl transition-all">
-                  <h4 className="font-semibold mb-4">Quizizz 1</h4>
+
+              {/* Quizizz 1 */}
+              <div className="bg-white dark:bg-zinc-900 rounded-3xl p-8 hover:shadow-xl transition-all border border-zinc-100 dark:border-zinc-800 flex flex-col justify-between">
+                <div>
+                  <h4 className="text-xl font-semibold mb-6">Quizizz 1</h4>
                   <a
                     href="https://quizizz.com/join?gc=67121743"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="block"
                   >
-                    <img
-                      src="/images/icon/quizizz.png"
-                      alt="Quizizz 1"
-                      className="rounded-xl mx-auto"
-                    />
+                    <div className="bg-zinc-50 dark:bg-zinc-800 rounded-2xl p-6 hover:scale-105 transition-transform">
+                      <img
+                        src="/images/icon/quizizz.png"
+                        alt="Quizizz 1"
+                        className="mx-auto rounded-xl h-20 object-contain"
+                      />
+                    </div>
                   </a>
                 </div>
+                <p className="text-center text-xs text-zinc-500 mt-6">
+                  Join Game Session 1
+                </p>
+              </div>
 
-                <div className="bg-zinc-100 dark:bg-zinc-900 rounded-3xl p-6 hover:shadow-xl transition-all">
-                  <h4 className="font-semibold mb-4">Quizizz 2</h4>
+              {/* Quizizz 2 */}
+              <div className="bg-white dark:bg-zinc-900 rounded-3xl p-8 hover:shadow-xl transition-all border border-zinc-100 dark:border-zinc-800 flex flex-col justify-between">
+                <div>
+                  <h4 className="text-xl font-semibold mb-6">Quizizz 2</h4>
                   <a
                     href="https://quizizz.com/join?gc=75053522"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="block"
                   >
-                    <img
-                      src="/images/icon/quizizz.png"
-                      alt="Quizizz 2"
-                      className="rounded-xl mx-auto"
-                    />
+                    <div className="bg-zinc-50 dark:bg-zinc-800 rounded-2xl p-6 hover:scale-105 transition-transform">
+                      <img
+                        src="/images/icon/quizizz.png"
+                        alt="Quizizz 2"
+                        className="mx-auto rounded-xl h-20 object-contain"
+                      />
+                    </div>
                   </a>
                 </div>
+                <p className="text-center text-xs text-zinc-500 mt-6">
+                  Join Game Session 2
+                </p>
               </div>
-
-              <p className="text-center text-amber-600 dark:text-amber-500 font-medium">
-                Note: Click Quizizz 2 if you are unable to join Quizizz 1.
-              </p>
             </div>
+
+            <p className="text-center text-amber-600 dark:text-amber-500 font-medium bg-amber-50 dark:bg-amber-900/10 py-4 rounded-2xl border border-amber-100 dark:border-amber-900/20">
+              Note: Click Quizizz 2 if you are unable to join Quizizz 1.
+            </p>
           </div>
         </div>
       </section>

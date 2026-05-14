@@ -119,7 +119,7 @@ export default function Home() {
         />
 
         {/* Dark Overlay for better text readability */}
-        <div className="absolute inset-0 bg-linear-to-br from-zinc-850/90 via-zinc-850/70 to-black/70" />
+        <div className="absolute inset-0 bg-linear-to-br from-zinc-950/80 via-zinc-900/70 to-black/60" />
 
         {/* Subtle radial accent */}
         <div className="absolute inset-0 bg-[radial-gradient(at_center,#eab30820_0%,transparent_70%)]" />
@@ -134,7 +134,7 @@ export default function Home() {
             </h1>
 
             <div className="mt-3 inline-flex items-center gap-2 px-4 py-2 bg-yellow-500/10 border border-yellow-500/30 rounded-full mb-6 backdrop-blur-sm">
-              <span className="text-yellow-400 text-xl font-medium">
+              <span className="text-yellow-400 text-2xl font-medium">
                 District of Daanbantayan II
               </span>
             </div>

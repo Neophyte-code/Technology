@@ -43,7 +43,7 @@ export default function Navbar() {
             {/* Supplemental Text */}
             <div className="hidden md:block ml-4 pl-4 border-l border-zinc-200 dark:border-zinc-700">
               <span className="text-sm font-medium text-zinc-600 dark:text-zinc-200">
-                Technology Assisted Module in Math
+                Technology-Assisted Modules in Math
               </span>
             </div>
           </div>

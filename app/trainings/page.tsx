@@ -12,12 +12,14 @@ export default function TrainingsPage() {
 
       <div className="pt-24 bg-zinc-50 dark:bg-zinc-950 min-h-screen">
         {/* Hero Section */}
-        <section className="bg-zinc-900 text-white py-20">
-          <div className="max-w-screen-2xl mx-auto px-6">
+        <section className="bg-zinc-50 dark:bg-zinc-950 text-zinc-900 dark:text-white py-20 transition-colors duration-500">
+          <div className="max-w-screen-2xl mx-auto px-6 lg:px-16 xl:px-24">
+            {" "}
+            {/* Added your standard padding */}
             <div className="grid md:grid-cols-2 gap-12 items-center">
               {/* Left Side - Image */}
               <div className="relative">
-                <div className="aspect-square md:aspect-4/3 bg-zinc-800 rounded-3xl overflow-hidden shadow-2xl">
+                <div className="aspect-square md:aspect-4/3 bg-zinc-200 dark:bg-zinc-800 rounded-3xl overflow-hidden shadow-2xl border border-zinc-200 dark:border-zinc-800">
                   <img
                     src="/images/training.jpg"
                     alt="Mathematics Teachers Conference"
@@ -28,8 +30,8 @@ export default function TrainingsPage() {
 
               {/* Right Side - Content */}
               <div className="text-center md:text-left">
-                <div className="inline-flex items-center gap-2 px-4 py-2 bg-yellow-500/10 border border-yellow-500/30 rounded-full mb-6">
-                  <span className="text-yellow-400">
+                <div className="inline-flex items-center gap-2 px-4 py-2 bg-yellow-500/10 dark:bg-yellow-500/10 border border-yellow-500/30 rounded-full mb-6 backdrop-blur-sm">
+                  <span className="text-yellow-600 dark:text-yellow-400 font-semibold text-sm tracking-wide">
                     Professional Development
                   </span>
                 </div>
@@ -38,11 +40,11 @@ export default function TrainingsPage() {
                   Mathematics Teachers&apos; Conference
                 </h1>
 
-                <p className="text-3xl text-yellow-400 font-medium mb-6">
+                <p className="text-3xl text-yellow-600 dark:text-yellow-400 font-bold mb-6">
                   2026
                 </p>
 
-                <p className="max-w-lg text-lg text-zinc-400">
+                <p className="max-w-lg text-lg text-zinc-600 dark:text-zinc-400 leading-relaxed">
                   Technology-Assisted Module in Mathematics Instruction Towards
                   Digitalization
                 </p>

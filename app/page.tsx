@@ -119,8 +119,8 @@ export default function Home() {
         />
 
         {/* Dark Overlay for better text readability */}
-        <div className="absolute inset-0 bg-linear-to-br from-zinc-950/80 via-zinc-900/70 to-black/60" />
-
+        {/* Dynamic Overlay: Light (Transparent/White) vs Dark (Zinc/Black) */}
+        <div className="absolute inset-0 bg-linear-to-br from-white/40 via-transparent to-white/20 dark:from-zinc-950/80 dark:via-zinc-900/70 dark:to-black/60" />
         {/* Subtle radial accent */}
         <div className="absolute inset-0 bg-[radial-gradient(at_center,#eab30820_0%,transparent_70%)]" />
 

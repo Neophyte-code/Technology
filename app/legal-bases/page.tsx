@@ -52,13 +52,13 @@ export default function LegalBasesPage() {
             <div className="text-center mb-16">
               {/* Libra scale icon above the title */}
               <div className="flex justify-center mb-4">
-                <FaBalanceScaleLeft className="text-5xl text-yellow-500 drop-shadow-md" />
+                <p className="text-5xl text-yellow-500 drop-shadow-md">⚖️</p>
               </div>
 
               {/* Title box */}
               <div className="inline-block bg-linear-to-r from-yellow-500 to-amber-600 dark:from-yellow-600 dark:to-amber-700 rounded-2xl px-8 py-4 shadow-lg">
                 <h1 className="text-5xl font-bold tracking-tighter text-white">
-                  Bulletin
+                  Legal Bases
                 </h1>
               </div>
 

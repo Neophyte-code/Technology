@@ -22,12 +22,9 @@ export default function AnnouncementsPage() {
             OFFICIAL ANNOUNCEMENT
           </div>
 
-          <h1 className="text-3xl md:text-5xl lg:text-6xl font-extrabold tracking-tight text-zinc-900 dark:text-white leading-tight max-w-5xl mx-auto">
+          <h1 className="text-3xl md:text-5xl lg:text-6xl font-extrabold tracking-tight text-white dark:text-white leading-tight max-w-5xl mx-auto">
             Adaptation of Digitalized Technology-Assisted Modules in Mathematics
-            Instruction will be in School Year{" "}
-            <span className="text-yellow-600 dark:text-yellow-500">
-              2027-2028
-            </span>
+            Instruction will be in School Year 2027-2028
           </h1>
         </div>
       </div>

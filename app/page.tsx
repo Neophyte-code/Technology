@@ -64,14 +64,6 @@ export default function Home() {
     },
   ];
 
-  // --- HELPER FUNCTIONS ---
-  const handleZoomIn = () => setScale((prev) => Math.min(prev + 0.5, 4));
-  const handleZoomOut = () => {
-    const newScale = Math.max(scale - 0.5, 1);
-    setScale(newScale);
-    if (newScale === 1) setPosition({ x: 0, y: 0 });
-  };
-
   const resetZoom = () => {
     setScale(1);
     setPosition({ x: 0, y: 0 });
@@ -86,23 +78,6 @@ export default function Home() {
     resetZoom();
     setCurrentImageIndex((prev) => (prev - 1 + images.length) % images.length);
   };
-
-  // --- DRAG HANDLERS ---
-  const startDrag = (clientX: number, clientY: number) => {
-    if (scale <= 1) return;
-    setIsDragging(true);
-    setDragStart({ x: clientX - position.x, y: clientY - position.y });
-  };
-
-  const onDrag = (clientX: number, clientY: number) => {
-    if (!isDragging || scale <= 1) return;
-    setPosition({
-      x: clientX - dragStart.x,
-      y: clientY - dragStart.y,
-    });
-  };
-
-  const stopDrag = () => setIsDragging(false);
 
   return (
     <>
@@ -159,9 +134,20 @@ export default function Home() {
         <div className="absolute bottom-0 left-0 right-0 h-32 bg-linear-to-t from-zinc-950 to-transparent" />
       </section>
 
-      {/* MODERN IMAGE CAROUSEL */}
-      <section className="py-20 bg-white dark:bg-zinc-950">
-        <div className="max-w-screen-2xl mx-auto xl:px-24">
+      {/* MODERN IMAGE CAROUSEL with Background Image */}
+      <section className="py-20 relative overflow-hidden">
+        {/* Background Image Container */}
+        <div
+          className="absolute inset-0 bg-cover bg-center bg-no-repeat"
+          style={{
+            backgroundImage:
+              "url('https://images.unsplash.com/photo-1509228468518-180dd4864904?q=80&w=2070&auto=format')", // digital math / laptop & graphs
+          }}
+        />
+        {/* Overlay for readability */}
+        <div className="absolute inset-0 bg-white/70 dark:bg-zinc-950/80 backdrop-blur-[2px]" />
+
+        <div className="max-w-screen-2xl mx-auto xl:px-24 relative z-10">
           <div className="flex justify-between items-end mb-10">
             <div>
               <h2 className="text-4xl font-bold tracking-tight">
@@ -171,49 +157,72 @@ export default function Home() {
                 Click image to preview full size
               </p>
             </div>
-            <div className="text-sm text-zinc-500">
-              {currentImageIndex + 1} / {images.length}
-            </div>
           </div>
 
-          <div className="relative max-w-6xl mx-auto group">
+          <div className="flex flex-col items-center gap-6">
+            {/* Image Container */}
             <div
-              className="bg-zinc-100 dark:bg-zinc-900 rounded-3xl overflow-hidden shadow-2xl aspect-video cursor-pointer"
+              className="bg-zinc-100 dark:bg-zinc-900 rounded-3xl overflow-hidden shadow-2xl cursor-pointer w-fit mx-auto max-w-md"
               onClick={() => setIsModalOpen(true)}
             >
               <img
                 src={images[currentImageIndex]}
                 alt="Featured Module"
-                className="w-full h-full object-contain transition-transform duration-500 group-hover:scale-105"
+                className="max-w-full h-auto transition-transform duration-500 group-hover:scale-105"
               />
             </div>
-            <button
-              onClick={prevImage}
-              className="absolute left-6 top-1/2 -translate-y-1/2 w-14 h-14 bg-black/70 hover:bg-yellow-600 text-white rounded-2xl flex items-center justify-center transition-all backdrop-blur-md"
-            >
-              ←
-            </button>
-            <button
-              onClick={nextImage}
-              className="absolute right-6 top-1/2 -translate-y-1/2 w-14 h-14 bg-black/70 hover:bg-yellow-600 text-white rounded-2xl flex items-center justify-center transition-all backdrop-blur-md"
-            >
-              →
-            </button>
+
+            {/* Navigation Buttons Below Image */}
+            <div className="flex gap-4">
+              <button
+                onClick={prevImage}
+                className="px-6 py-2 bg-yellow-500 text-black rounded-xl hover:bg-yellow-600 transition-all font-medium"
+              >
+                Prev
+              </button>
+              <button
+                onClick={nextImage}
+                className="px-6 py-2 bg-yellow-500 text-black rounded-xl hover:bg-yellow-600 transition-all font-medium"
+              >
+                Next
+              </button>
+            </div>
+
+            {/* Optional image counter (already shown above, but you can keep it here too) */}
+            <div className="text-sm text-zinc-500">
+              {currentImageIndex + 1} / {images.length}
+            </div>
           </div>
         </div>
       </section>
 
-      {/* LESSONS SECTION */}
-      <section id="lessons" className="py-20 bg-zinc-50 dark:bg-zinc-950">
-        <div className="max-w-screen-2xl mx-auto px-6">
+      {/* LESSONS SECTION - Nature background + gradient title */}
+      <section id="lessons" className="py-20 relative overflow-hidden">
+        {/* Nature Background Image */}
+        <div
+          className="absolute inset-0 bg-cover bg-center bg-no-repeat"
+          style={{
+            backgroundImage:
+              "url('https://images.unsplash.com/photo-1501854140801-50d01698950b?q=80&w=2100&auto=format')", // serene nature / forest
+          }}
+        />
+
+        <div className="max-w-screen-2xl mx-auto px-6 relative z-10">
+          {/* Gradient Title Div (unchanged) */}
           <div className="text-center mb-12">
-            <h2 className="text-4xl font-bold tracking-tight">LESSONS</h2>
+            <div className="inline-block bg-linear-to-r from-yellow-500 to-amber-600 dark:from-yellow-600 dark:to-amber-700 rounded-2xl px-8 py-4 shadow-lg">
+              <h2 className="text-4xl font-bold tracking-tight text-white">
+                LESSONS IN GENERAL MATHEMATICS
+              </h2>
+            </div>
           </div>
-          <div className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+
+          {/* Lessons Cards Row (unchanged) */}
+          <div className="flex flex-wrap justify-center gap-8 max-w-7xl mx-auto">
             {lessons.map((lesson, index) => (
               <div
                 key={index}
-                className="group bg-white dark:bg-zinc-900 rounded-3xl overflow-hidden border border-zinc-100 dark:border-zinc-800 hover:border-yellow-500 transition-all duration-300 hover:shadow-2xl"
+                className="flex-1 min-w-62.5 max-w-75 group bg-white dark:bg-zinc-900 rounded-3xl overflow-hidden dark:border-zinc-800 hover:border-yellow-500 transition-all duration-300 hover:shadow-2xl"
               >
                 <div className="relative aspect-video bg-zinc-950">
                   {lesson.type === "youtube" ? (
@@ -239,9 +248,7 @@ export default function Home() {
                   )}
                 </div>
                 <div className="p-6">
-                  {" "}
-                  {/* Reduced padding slightly to match smaller size */}
-                  <h3 className="font-semibold text-lg text-yellow-500 dark:text-white leading-tight">
+                  <h3 className="font-semibold text-lg text-yellow-600 text-center dark:text-white leading-tight">
                     {lesson.title}
                   </h3>
                 </div>
@@ -302,34 +309,59 @@ export default function Home() {
         </div>
       )}
 
-      {/* ASSESSMENT SECTION */}
+      {/* ASSESSMENT SECTION - Egypt background + gradient title */}
       <section
         id="assessment"
-        className="py-20 bg-zinc-50 dark:bg-zinc-950/50 border-y border-zinc-100 dark:border-zinc-900"
+        className="py-20 relative overflow-hidden border-y border-zinc-100 dark:border-zinc-900"
       >
-        {/* Updated padding to match Hero: px-6 lg:px-16 xl:px-24 */}
-        <div className="max-w-screen-2xl mx-auto px-6 lg:px-16 xl:px-24">
+        {/* Egypt Scenery Background */}
+        <div
+          className="absolute inset-0 bg-cover bg-center bg-no-repeat"
+          style={{
+            backgroundImage:
+              "url('https://images.unsplash.com/photo-1503177119275-0aa32b3a9368?q=80&w=2070&auto=format')", // Egypt / Pyramids scenery
+          }}
+        />
+
+        <div className="max-w-screen-2xl mx-auto flex items-center flex-col justify-center px-6 lg:px-16 xl:px-24 relative z-10">
+          {/* Gradient Title Div (same style as Lessons) */}
           <div className="max-w-4xl mb-16">
-            <h2 className="text-4xl font-bold tracking-tight mb-8">
-              Assessment Section
-            </h2>
-            <div className="space-y-6 text-zinc-700 dark:text-zinc-300 leading-relaxed text-lg">
+            <div className="inline-block bg-linear-to-r from-yellow-500 to-amber-600 dark:from-yellow-600 dark:to-amber-700 rounded-2xl px-8 py-4 shadow-lg">
+              <h2 className="text-4xl font-bold tracking-tight text-white">
+                Assessment Section
+              </h2>
+            </div>
+          </div>
+
+          {/* Description text - adjusted for contrast */}
+          <div className="max-w-4xl mb-16">
+            <div className="space-y-6 text-zinc-800 dark:text-zinc-100 leading-relaxed text-lg bg-white/40 dark:bg-black/30 backdrop-blur-sm p-6 rounded-2xl">
               <p>
-                Put your knowledge to the test! After exploring our modules and
-                watching the video tutorials, it's time to see how well you've
-                understood the material.
+                Welcome to the assessment section of our General Mathematics
+                website. This is where you can put your knowledge to the test!
+                After exploring our modules and watching the video tutorials,
+                it's time to see how well you've understood the material.
               </p>
               <p className="font-medium">
-                Take your time, learn from your mistakes, and keep improving.
-                Good luck!
+                In this section, you'll find a variety of quizzes and practice
+                tests that cover the topics we've discussed. These assessments
+                are designed to challenge you and provide immediate feedback so
+                you can see where you excel and where you might need a bit more
+                practice.
+              </p>
+              <p>
+                Take your time with each quiz, and don't worry if you don't get
+                everything right on the first try. The goal is to help you learn
+                and improve. Good luck, and happy studying!
               </p>
             </div>
           </div>
 
+          {/* Cards grid and note (unchanged except background removed from cards) */}
           <div className="space-y-10">
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
               {/* Google Quiz */}
-              <div className="bg-white dark:bg-zinc-900 rounded-3xl p-8 hover:shadow-xl transition-all border border-zinc-100 dark:border-zinc-800 flex flex-col justify-between">
+              <div className="bg-white/90 dark:bg-zinc-900/90 backdrop-blur-sm rounded-3xl p-8 hover:shadow-xl transition-all border border-zinc-100 dark:border-zinc-800 flex flex-col justify-between">
                 <div>
                   <h3 className="text-xl font-semibold mb-6">Google Quiz</h3>
                   <a
@@ -348,12 +380,12 @@ export default function Home() {
                   </a>
                 </div>
                 <p className="text-center text-xs text-zinc-500 mt-6">
-                  Click to start official quiz
+                  Click the figure above to redirect to Google forms
                 </p>
               </div>
 
               {/* Quizizz 1 */}
-              <div className="bg-white dark:bg-zinc-900 rounded-3xl p-8 hover:shadow-xl transition-all border border-zinc-100 dark:border-zinc-800 flex flex-col justify-between">
+              <div className="bg-white/90 dark:bg-zinc-900/90 backdrop-blur-sm rounded-3xl p-8 hover:shadow-xl transition-all border border-zinc-100 dark:border-zinc-800 flex flex-col justify-between">
                 <div>
                   <h4 className="text-xl font-semibold mb-6">Quizizz 1</h4>
                   <a
@@ -372,12 +404,12 @@ export default function Home() {
                   </a>
                 </div>
                 <p className="text-center text-xs text-zinc-500 mt-6">
-                  Join Game Session 1
+                  Click the figure above to redirect to Quizizz
                 </p>
               </div>
 
               {/* Quizizz 2 */}
-              <div className="bg-white dark:bg-zinc-900 rounded-3xl p-8 hover:shadow-xl transition-all border border-zinc-100 dark:border-zinc-800 flex flex-col justify-between">
+              <div className="bg-white/90 dark:bg-zinc-900/90 backdrop-blur-sm rounded-3xl p-8 hover:shadow-xl transition-all border border-zinc-100 dark:border-zinc-800 flex flex-col justify-between">
                 <div>
                   <h4 className="text-xl font-semibold mb-6">Quizizz 2</h4>
                   <a
@@ -396,55 +428,77 @@ export default function Home() {
                   </a>
                 </div>
                 <p className="text-center text-xs text-zinc-500 mt-6">
-                  Join Game Session 2
+                  Click the figure above to redirect to Quizizz
                 </p>
               </div>
             </div>
 
-            <p className="text-center text-amber-600 dark:text-amber-500 font-medium bg-amber-50 dark:bg-amber-900/10 py-4 rounded-2xl border border-amber-100 dark:border-amber-900/20">
+            <p className="text-center text-amber-600 dark:text-amber-500 font-medium bg-amber-50/90 dark:bg-amber-900/20 backdrop-blur-sm py-4 rounded-2xl border border-amber-100 dark:border-amber-900/20">
               Note: Click Quizizz 2 if you are unable to join Quizizz 1.
             </p>
           </div>
         </div>
       </section>
 
-      {/* SURVEY SECTION */}
-      <section id="survey" className="py-20 bg-white dark:bg-zinc-950">
-        {/* Updated padding to match Hero: px-6 lg:px-16 xl:px-24 */}
-        <div className="max-w-screen-2xl mx-auto px-6 lg:px-16 xl:px-24">
-          <div className="max-w-4xl mb-12">
-            <h2 className="text-4xl font-bold tracking-tight mb-6">
-              Survey Questionnaire
-            </h2>
-            <p className="text-zinc-700 dark:text-zinc-300 text-lg">
-              Your feedback is important to us. Please take a moment to complete
-              this survey to help improve the technology-assisted instruction
-              experience.
-            </p>
-          </div>
+      {/* SURVEY SECTION - Japan scenery, left text / right card */}
+      <section id="survey" className="py-20 relative overflow-hidden">
+        {/* Japan Scenery Background */}
+        <div
+          className="absolute inset-0 bg-cover bg-center bg-no-repeat"
+          style={{
+            backgroundImage:
+              "url('https://images.unsplash.com/photo-1493976040374-85c8e12f0c0e?q=80&w=2070&auto=format')", // Japan / Mount Fuji & cherry blossoms
+          }}
+        />
 
-          <div className="max-w-md">
-            <div className="bg-zinc-100 dark:bg-zinc-900 rounded-3xl p-8 hover:shadow-xl transition-all border border-zinc-200 dark:border-zinc-800">
-              <h3 className="text-xl font-semibold mb-6">
-                General Feedback Survey
-              </h3>
-              <a
-                href="https://forms.gle/SktnJSxa4h6muhza8"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="block"
-              >
-                <div className="bg-white dark:bg-zinc-800 rounded-2xl p-6 hover:scale-105 transition-transform shadow-sm">
-                  <img
-                    src="/images/icon/googleform.png"
-                    alt="Google Survey"
-                    className="mx-auto rounded-xl h-24 object-contain"
-                  />
+        <div className="max-w-screen-2xl mx-auto px-6 lg:px-16 xl:px-24 relative z-10">
+          {/* Two-column layout: left (text) + right (card) */}
+          <div className="flex flex-col lg:flex-row gap-12 items-center">
+            {/* Left Column: Title + Description */}
+            <div className="flex-1">
+              {/* Gradient Title (now left-aligned) */}
+              <div className="mb-6">
+                <div className="inline-block bg-linear-to-r from-yellow-500 to-amber-600 dark:from-yellow-600 dark:to-amber-700 rounded-2xl px-8 py-4 shadow-lg">
+                  <h2 className="text-4xl font-bold tracking-tight text-white">
+                    Survey Questionnaire
+                  </h2>
                 </div>
-              </a>
-              <p className="text-center text-sm text-zinc-500 mt-6 font-medium">
-                Click the icon above to open Google Forms
-              </p>
+              </div>
+
+              {/* Description with semi-transparent background */}
+              <div className="bg-white/40 dark:bg-black/30 backdrop-blur-sm p-6 rounded-2xl">
+                <p className="text-zinc-800 dark:text-zinc-100 text-lg">
+                  Your feedback is important to us. Please take a moment to
+                  complete this survey to help improve the technology-assisted
+                  instruction experience.
+                </p>
+              </div>
+            </div>
+
+            {/* Right Column: Survey Card */}
+            <div className="w-full lg:w-96 shrink-0">
+              <div className="bg-white/90 dark:bg-zinc-900/90 backdrop-blur-sm rounded-3xl p-8 hover:shadow-xl transition-all border border-zinc-200 dark:border-zinc-800">
+                <h3 className="text-xl font-semibold mb-6">
+                  General Feedback Survey
+                </h3>
+                <a
+                  href="https://forms.gle/SktnJSxa4h6muhza8"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="block"
+                >
+                  <div className="bg-white dark:bg-zinc-800 rounded-2xl p-6 hover:scale-105 transition-transform shadow-sm">
+                    <img
+                      src="/images/icon/googleform.png"
+                      alt="Google Survey"
+                      className="mx-auto rounded-xl h-24 object-contain"
+                    />
+                  </div>
+                </a>
+                <p className="text-center text-sm text-zinc-500 mt-6 font-medium">
+                  Click the figure above to redirect to Google forms
+                </p>
+              </div>
             </div>
           </div>
         </div>

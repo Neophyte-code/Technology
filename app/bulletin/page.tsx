@@ -34,25 +34,38 @@ export default function AnnouncementsPage() {
     <>
       <Navbar />
 
-      <div className="pt-24 pb-16 bg-zinc-50 dark:bg-zinc-950 min-h-screen">
-        <div className="max-w-screen-2xl mx-auto px-6">
-          {/* Header */}
-          <div className="text-center mb-16">
+      {/* Announcements Section with Background Image & Gradient Title */}
+      <div className="pt-24 pb-16 relative min-h-screen overflow-hidden">
+        {/* Background Image (Iceland scenery) */}
+        <div
+          className="absolute inset-0 bg-cover bg-center bg-no-repeat"
+          style={{
+            backgroundImage:
+              "url('https://images.unsplash.com/photo-1483347756197-71ef80e95f73?q=80&w=2070&auto=formatt')",
+          }}
+        />
+
+        <div className="max-w-screen-2xl mx-auto px-6 relative z-10">
+          {/* Header with Gradient Title (layout unchanged) */}
+          <div className="text-center mb-16 flex flex-col items-center">
             <div className="inline-flex items-center gap-3 text-yellow-600 dark:text-yellow-500 mb-4">
               <FiBell className="w-8 h-8" />
               <span className="uppercase tracking-widest text-sm font-semibold">
                 Bulletin
               </span>
             </div>
-            <h1 className="text-5xl font-bold tracking-tighter text-zinc-900 dark:text-white">
-              Notifications
-            </h1>
-            <p className="mt-4 text-zinc-600 dark:text-zinc-400 text-lg">
+            {/* Gradient title wrapper */}
+            <div className="inline-block bg-linear-to-r from-yellow-500 to-amber-600 dark:from-yellow-600 dark:to-amber-700 rounded-2xl px-8 py-4 shadow-lg">
+              <h1 className="text-5xl font-bold tracking-tighter text-white">
+                Notifications
+              </h1>
+            </div>
+            <p className="mt-4 text-zinc-300 dark:text-zinc-200 text-lg">
               Latest Updates • District of Daanbantayan II
             </p>
           </div>
 
-          {/* Announcements Grid */}
+          {/* Announcements Grid – exactly as before */}
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
             {announcements.map((announcement, index) => (
               <div
@@ -85,7 +98,7 @@ export default function AnnouncementsPage() {
             ))}
           </div>
 
-          <div className="text-center mt-16 text-sm text-zinc-500 dark:text-zinc-400">
+          <div className="text-center mt-16 text-sm text-white dark:text-zinc-400">
             Stay updated with the latest developments in our Technology-Assisted
             Mathematics Program.
           </div>

@@ -161,7 +161,6 @@ export default function Home() {
               "url('https://images.unsplash.com/photo-1506905925346-21bda4d32df4?q=80&w=2070&auto=format')",
           }}
         />
-        <div className="absolute inset-0 bg-white/70 dark:bg-zinc-950/80 backdrop-blur-[2px]" />
 
         <div className="max-w-screen-2xl mx-auto xl:px-24 relative z-10">
           <div className="flex justify-between items-end mb-10">
@@ -169,9 +168,6 @@ export default function Home() {
               <h2 className="text-4xl font-bold tracking-tight text-zinc-900 dark:text-white">
                 Featured Modules
               </h2>
-              <p className="text-zinc-600 dark:text-zinc-400 mt-2">
-                Scroll to zoom • Drag to pan
-              </p>
             </div>
             <div className="text-sm text-zinc-500">
               {currentImageIndex + 1} / {images.length}

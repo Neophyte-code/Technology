@@ -119,57 +119,72 @@ export default function PlansPage() {
     <>
       <Navbar />
 
-      <div className="pt-24 pb-16 bg-zinc-50 dark:bg-zinc-950 min-h-screen">
-        <div className="max-w-screen-2xl mx-auto px-6">
-          {/* Header */}
+      {/* Action Plan Page with Mountain Scenery Background */}
+      <section className="pt-24 pb-16 relative min-h-screen overflow-hidden">
+        {/* Mountain / Forest Scenery Background */}
+        <div
+          className="absolute inset-0 bg-cover bg-center bg-no-repeat"
+          style={{
+            backgroundImage:
+              "url('https://images.unsplash.com/photo-1506905925346-21bda4d32df4?q=80&w=2070&auto=format')", // Mountain lake scenery
+          }}
+        />
+
+        <div className="max-w-screen-2xl mx-auto px-6 relative z-10">
           <div className="text-center mb-12">
-            <h1 className="text-4xl font-bold tracking-tight text-zinc-900 dark:text-white">
-              Action Plan
-            </h1>
-            <p className="text-xl text-zinc-600 dark:text-zinc-400 mt-3">
+            <div className="bg-linear-to-r from-yellow-500 to-amber-600 dark:from-yellow-600 dark:to-amber-700 rounded-2xl px-8 py-4 shadow-lg mb-4 w-fit mx-auto">
+              <h1 className="text-4xl font-bold tracking-tight text-white">
+                Action Plan
+              </h1>
+            </div>
+            <p className="text-xl text-zinc-800 dark:text-zinc-200 font-medium mt-3 bg-white/40 dark:bg-black/30 px-6 py-2 rounded-full backdrop-blur-sm w-fit mx-auto">
               Technology-Assisted Module in Mathematics Instruction Towards
               Digitalization
             </p>
-            <p className="text-sm text-yellow-600 dark:text-yellow-500 mt-1">
+            <p className="text-sm text-yellow-700 dark:text-yellow-400 mt-2 font-semibold w-fit mx-auto">
               District of Daanbantayan II • Division of Cebu Province
             </p>
           </div>
 
-          {/* Table */}
-          <div className="overflow-x-auto rounded-3xl shadow-lg border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900">
+          {/* Enhanced Table with Glassmorphism */}
+          <div className="overflow-x-auto rounded-3xl shadow-2xl border border-white/20 dark:border-zinc-700/50 bg-white/80 dark:bg-zinc-900/80 backdrop-blur-md">
             <table className="w-full text-sm">
-              <thead className="bg-zinc-100 dark:bg-zinc-800 sticky top-0">
+              <thead className="bg-linear-to-r from-yellow-500/90 to-amber-600/90 dark:from-yellow-600/90 dark:to-amber-700/90 sticky top-0">
                 <tr>
-                  <th className="px-6 py-5 text-left font-semibold text-zinc-700 dark:text-zinc-300">
+                  <th className="px-6 py-5 text-left font-semibold text-white">
                     Objectives
                   </th>
-                  <th className="px-6 py-5 text-left font-semibold text-zinc-700 dark:text-zinc-300">
+                  <th className="px-6 py-5 text-left font-semibold text-white">
                     Strategies
                   </th>
-                  <th className="px-6 py-5 text-left font-semibold text-zinc-700 dark:text-zinc-300">
+                  <th className="px-6 py-5 text-left font-semibold text-white">
                     Persons Involved
                   </th>
-                  <th className="px-6 py-5 text-left font-semibold text-zinc-700 dark:text-zinc-300">
+                  <th className="px-6 py-5 text-left font-semibold text-white">
                     Budget
                   </th>
-                  <th className="px-6 py-5 text-left font-semibold text-zinc-700 dark:text-zinc-300">
+                  <th className="px-6 py-5 text-left font-semibold text-white">
                     Source
                   </th>
-                  <th className="px-6 py-5 text-left font-semibold text-zinc-700 dark:text-zinc-300">
+                  <th className="px-6 py-5 text-left font-semibold text-white">
                     Time Frame
                   </th>
-                  <th className="px-6 py-5 text-left font-semibold text-zinc-700 dark:text-zinc-300">
+                  <th className="px-6 py-5 text-left font-semibold text-white">
                     Expected Outcome
                   </th>
                 </tr>
               </thead>
-              <tbody className="divide-y divide-zinc-200 dark:divide-zinc-800">
+              <tbody className="divide-y divide-zinc-200/50 dark:divide-zinc-700/50">
                 {actionPlans.map((plan, index) => (
                   <tr
                     key={index}
-                    className="hover:bg-yellow-50 dark:hover:bg-zinc-800/50 transition-colors"
+                    className={`transition-all duration-200 hover:bg-yellow-100/50 dark:hover:bg-yellow-900/30 hover:backdrop-blur-sm ${
+                      index % 2 === 0
+                        ? "bg-white/40 dark:bg-zinc-900/40"
+                        : "bg-white/20 dark:bg-zinc-800/20"
+                    }`}
                   >
-                    <td className="px-6 py-6 text-zinc-800 dark:text-zinc-200 leading-relaxed">
+                    <td className="px-6 py-6 text-zinc-800 dark:text-zinc-200 leading-relaxed font-medium">
                       {plan.objective}
                     </td>
                     <td className="px-6 py-6 text-zinc-700 dark:text-zinc-300">
@@ -178,7 +193,7 @@ export default function PlansPage() {
                     <td className="px-6 py-6 text-zinc-700 dark:text-zinc-300">
                       {plan.persons}
                     </td>
-                    <td className="px-6 py-6 font-medium text-emerald-600 dark:text-emerald-500">
+                    <td className="px-6 py-6 font-bold text-emerald-700 dark:text-emerald-400">
                       ₱{plan.budget}
                     </td>
                     <td className="px-6 py-6 text-zinc-700 dark:text-zinc-300">
@@ -196,12 +211,19 @@ export default function PlansPage() {
             </table>
           </div>
 
-          <div className="text-center mt-10 text-sm text-zinc-500">
-            Total Budget:{" "}
-            <span className="font-semibold text-emerald-600">₱27,000</span>
+          {/* Total Budget Badge */}
+          <div className="text-center mt-10">
+            <div className="inline-flex items-center gap-2 bg-white/60 dark:bg-black/40 backdrop-blur-sm px-6 py-3 rounded-full shadow-md border border-white/30 dark:border-zinc-700/50">
+              <span className="text-sm font-medium text-zinc-700 dark:text-zinc-300">
+                Total Budget:
+              </span>
+              <span className="text-xl font-bold text-emerald-700 dark:text-emerald-400">
+                ₱27,000
+              </span>
+            </div>
           </div>
         </div>
-      </div>
+      </section>
     </>
   );
 }

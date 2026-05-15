@@ -12,12 +12,9 @@ export default function AnnouncementsPage() {
         className="relative min-h-screen flex items-center justify-center pt-24 bg-cover bg-center bg-no-repeat"
         style={{
           backgroundImage:
-            "url('https://images.unsplash.com/photo-1518133910546-b6c2fb7d79e3?q=80&w=2000')",
+            "url('https://images.unsplash.com/photo-1583212292454-1fe6229603b7?w=2000&q=80')",
         }}
       >
-        {/* Overlay: Adjusts based on Light/Dark mode */}
-        <div className="absolute inset-0 bg-white/80 dark:bg-zinc-950/90 z-0" />
-
         {/* Content */}
         <div className="relative z-10 w-full max-w-screen-2xl mx-auto px-6 lg:px-16 xl:px-24 py-20 text-center">
           <div className="inline-flex items-center gap-2 px-4 py-2 bg-yellow-500 text-black rounded-full font-bold text-sm mb-8">

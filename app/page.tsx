@@ -388,20 +388,20 @@ export default function Home() {
           {/* Description text - adjusted for contrast */}
           <div className="max-w-4xl mb-16">
             <div className="space-y-6 text-zinc-800 dark:text-zinc-100 leading-relaxed text-lg bg-white/40 dark:bg-black/30 backdrop-blur-sm p-6 rounded-2xl">
-              <p className="indent-20">
+              <p className="indent-20 text-justify">
                 Welcome to the assessment section of our General Mathematics
                 website. This is where you can put your knowledge to the test!
                 After exploring our modules and watching the video tutorials,
                 it's time to see how well you've understood the material.
               </p>
-              <p className="font-medium indent-20">
+              <p className="font-medium indent-20 text-justify">
                 In this section, you'll find a variety of quizzes and practice
                 tests that cover the topics we've discussed. These assessments
                 are designed to challenge you and provide immediate feedback so
                 you can see where you excel and where you might need a bit more
                 practice.
               </p>
-              <p className="indent-20">
+              <p className="indent-20 text-justify">
                 Take your time with each quiz, and don't worry if you don't get
                 everything right on the first try. The goal is to help you learn
                 and improve. Good luck, and happy studying!

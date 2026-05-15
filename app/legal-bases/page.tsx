@@ -2,6 +2,7 @@ import React from "react";
 import Navbar from "../components/Navbar";
 import Link from "next/link";
 import { FiExternalLink, FiFileText } from "react-icons/fi";
+import { FaBalanceScaleLeft } from "react-icons/fa";
 
 const legalBases = [
   {
@@ -35,9 +36,9 @@ export default function LegalBasesPage() {
       <div className="relative min-h-screen bg-zinc-50 dark:bg-zinc-950 overflow-hidden">
         {/* Background Image Layer */}
         <div
-          className="absolute inset-0 z-0 opacity-10 dark:opacity-20 pointer-events-none"
+          className="absolute inset-0 z-0  pointer-events-none"
           style={{
-            backgroundImage: `url('https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&q=80')`, // A clean office/educational building background
+            backgroundImage: `url('https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05?w=1920&q=80')`, // A clean office/educational building background
             backgroundSize: "cover",
             backgroundPosition: "center",
             backgroundAttachment: "fixed",
@@ -49,18 +50,25 @@ export default function LegalBasesPage() {
           <div className="max-w-screen-2xl mx-auto px-6">
             {/* Header */}
             <div className="text-center mb-16">
-              <div className="inline-flex items-center gap-3 mb-4">
-                <div className="p-3 bg-yellow-100 dark:bg-yellow-900/30 rounded-2xl">
-                  <FiFileText className="w-10 h-10 text-yellow-600 dark:text-yellow-500" />
-                </div>
+              {/* Libra scale icon above the title */}
+              <div className="flex justify-center mb-4">
+                <FaBalanceScaleLeft className="text-5xl text-yellow-500 drop-shadow-md" />
               </div>
-              <h1 className="text-5xl font-bold tracking-tighter text-zinc-900 dark:text-white">
-                Legal Bases
-              </h1>
-              <p className="mt-4 text-lg text-zinc-600 dark:text-zinc-400 max-w-2xl mx-auto">
-                Supporting Policies for Technology-Assisted Module in
-                Mathematics Instruction
-              </p>
+
+              {/* Title box */}
+              <div className="inline-block bg-linear-to-r from-yellow-500 to-amber-600 dark:from-yellow-600 dark:to-amber-700 rounded-2xl px-8 py-4 shadow-lg">
+                <h1 className="text-5xl font-bold tracking-tighter text-white">
+                  Bulletin
+                </h1>
+              </div>
+
+              {/* Glassmorphism description */}
+              <div className="mt-6 backdrop-blur-md bg-white/60 dark:bg-zinc-800/60 border border-white/20 shadow-xl rounded-2xl px-6 py-4 max-w-2xl mx-auto">
+                <p className="text-lg text-white-800 dark:text-zinc-200 leading-relaxed">
+                  Supporting Policies for Technology-Assisted Module in
+                  Mathematics Instruction
+                </p>
+              </div>
             </div>
 
             {/* Legal Bases Cards */}

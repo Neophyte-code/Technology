@@ -1,25 +1,70 @@
 "use client";
 
-import React from "react";
+import { useState, useEffect } from "react";
 import Navbar from "../components/Navbar";
-import Link from "next/link";
 import { FiCalendar, FiMapPin, FiUsers, FiAward } from "react-icons/fi";
 
+// Helper to preload an image and return a Promise
+const preloadImage = (url: string): Promise<boolean> => {
+  return new Promise((resolve) => {
+    const img = new Image();
+    img.onload = () => resolve(true);
+    img.onerror = () => resolve(false);
+    img.src = url;
+  });
+};
+
 export default function TrainingsPage() {
+  const [heroBg, setHeroBg] = useState(
+    "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=1920&q=80",
+  );
+  const [detailsBg, setDetailsBg] = useState(
+    "https://images.unsplash.com/photo-1441974231531-c6227db76b6e?w=1920&q=80",
+  );
+  const [objectivesBg, setObjectivesBg] = useState(
+    "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=1920&q=80",
+  );
+
+  useEffect(() => {
+    // Try primary, fallback to alternative if it fails
+    async function loadImages() {
+      const heroOk = await preloadImage(heroBg);
+      if (!heroOk)
+        setHeroBg(
+          "https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?w=1920&q=80",
+        );
+
+      const detailsOk = await preloadImage(detailsBg);
+      if (!detailsOk)
+        setDetailsBg(
+          "https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05?w=1920&q=80",
+        );
+
+      const objOk = await preloadImage(objectivesBg);
+      if (!objOk)
+        setObjectivesBg(
+          "https://images.unsplash.com/photo-1476673160092-c2a1e1ed5d74?w=1920&q=80",
+        );
+    }
+    loadImages();
+  }, []);
+
   return (
     <>
       <Navbar />
+      <div className="pt-24 min-h-screen">
+        {/* ----- HERO SECTION ----- */}
+        <section className="relative text-white py-20 overflow-hidden">
+          <div
+            className="absolute inset-0 bg-cover bg-center bg-no-repeat transition-all duration-1000"
+            style={{ backgroundImage: `url(${heroBg})` }}
+          />
 
-      <div className="pt-24 bg-zinc-50 dark:bg-zinc-950 min-h-screen">
-        {/* Hero Section */}
-        <section className="bg-zinc-50 dark:bg-zinc-950 text-zinc-900 dark:text-white py-20 transition-colors duration-500">
-          <div className="max-w-screen-2xl mx-auto px-6 lg:px-16 xl:px-24">
-            {" "}
-            {/* Added your standard padding */}
+          <div className="relative max-w-screen-2xl mx-auto px-6 lg:px-16 xl:px-24">
             <div className="grid md:grid-cols-2 gap-12 items-center">
               {/* Left Side - Image */}
               <div className="relative">
-                <div className="aspect-square md:aspect-4/3 bg-zinc-200 dark:bg-zinc-800 rounded-3xl overflow-hidden shadow-2xl border border-zinc-200 dark:border-zinc-800">
+                <div className="aspect-square md:aspect-4/3 bg-white/10 backdrop-blur-md rounded-3xl overflow-hidden shadow-2xl border border-white/20">
                   <img
                     src="/images/training.jpg"
                     alt="Mathematics Teachers Conference"
@@ -30,21 +75,18 @@ export default function TrainingsPage() {
 
               {/* Right Side - Content */}
               <div className="text-center md:text-left">
-                <div className="inline-flex items-center gap-2 px-4 py-2 bg-yellow-500/10 dark:bg-yellow-500/10 border border-yellow-500/30 rounded-full mb-6 backdrop-blur-sm">
-                  <span className="text-yellow-600 dark:text-yellow-400 font-semibold text-sm tracking-wide">
+                <div className="inline-flex items-center gap-2 px-4 py-2 bg-yellow-500/20 border border-yellow-400/50 rounded-full mb-6 backdrop-blur-sm">
+                  <span className="text-yellow-300 font-semibold text-sm tracking-wide">
                     Professional Development
                   </span>
                 </div>
-
-                <h1 className="text-5xl md:text-6xl font-bold tracking-tighter leading-tight mb-6">
+                <h1 className="text-5xl md:text-6xl font-bold tracking-tighter leading-tight mb-6 drop-shadow-lg">
                   Mathematics Teachers&apos; Conference
                 </h1>
-
-                <p className="text-3xl text-yellow-600 dark:text-yellow-400 font-bold mb-6">
+                <p className="text-3xl text-yellow-300 font-bold mb-6 drop-shadow-md">
                   2026
                 </p>
-
-                <p className="max-w-lg text-lg text-zinc-600 dark:text-zinc-400 leading-relaxed">
+                <p className="max-w-lg text-lg text-zinc-200 leading-relaxed">
                   Technology-Assisted Module in Mathematics Instruction Towards
                   Digitalization
                 </p>
@@ -53,9 +95,14 @@ export default function TrainingsPage() {
           </div>
         </section>
 
-        {/* Event Details */}
-        <section className="py-16">
-          <div className="max-w-screen-2xl mx-auto px-6">
+        {/* ----- EVENT DETAILS SECTION ----- */}
+        <section className="relative py-16 overflow-hidden">
+          <div
+            className="absolute inset-0 bg-cover bg-center bg-no-repeat"
+            style={{ backgroundImage: `url(${detailsBg})` }}
+          />
+
+          <div className="relative max-w-screen-2xl mx-auto px-6">
             <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
               <div className="bg-white dark:bg-zinc-900 p-8 rounded-3xl shadow-sm border border-zinc-100 dark:border-zinc-800">
                 <FiCalendar className="w-10 h-10 text-yellow-500 mb-4" />
@@ -102,13 +149,17 @@ export default function TrainingsPage() {
           </div>
         </section>
 
-        {/* Conference Objectives */}
-        <section className="py-16 bg-white dark:bg-zinc-900">
-          <div className="max-w-screen-2xl mx-auto px-6">
+        {/* ----- OBJECTIVES SECTION ----- */}
+        <section className="relative py-16 overflow-hidden">
+          <div
+            className="absolute inset-0 bg-cover bg-center bg-no-repeat"
+            style={{ backgroundImage: `url(${objectivesBg})` }}
+          />
+
+          <div className="relative max-w-screen-2xl mx-auto px-6">
             <h2 className="text-3xl font-bold text-center mb-12">
               Conference Objectives
             </h2>
-
             <div className="max-w-4xl mx-auto space-y-6">
               {[
                 "Equip mathematics teachers with the latest technology-assisted tools and digital resources.",
@@ -120,12 +171,12 @@ export default function TrainingsPage() {
               ].map((obj, i) => (
                 <div
                   key={i}
-                  className="flex gap-4 bg-zinc-50 dark:bg-zinc-800 p-6 rounded-2xl"
+                  className="flex gap-4 bg-white/80 dark:bg-zinc-800/80 backdrop-blur-sm p-6 rounded-2xl"
                 >
                   <div className="w-8 h-8 rounded-full bg-yellow-500 text-black flex items-center justify-center font-bold shrink-0 mt-0.5">
                     {i + 1}
                   </div>
-                  <p className="text-zinc-700 dark:text-zinc-300 leading-relaxed">
+                  <p className="text-zinc-800 dark:text-zinc-200 leading-relaxed">
                     {obj}
                   </p>
                 </div>
